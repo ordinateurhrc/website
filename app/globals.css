@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .clip-chevron {
+    clip-path: polygon(90% 0%, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
+  }
+  .clip-inherit {
+    clip-path: inherit;
+  }
+
+  @supports (background-clip: text) and (-webkit-text-fill-color: transparent) {
+    .bg-gradient {
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+
+      @apply bg-gradient-to-r from-red to-cyan;
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-sans;
+  background-color: #212121;
+  overflow-x: hidden;
+}
