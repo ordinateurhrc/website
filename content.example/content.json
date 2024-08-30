@@ -2,7 +2,6 @@
   "metadata": {
     "name": "Ordinateur",
     "description": "The Computer Science Society of Hansraj College",
-    "logo": "./images/logo.png",
-    "favicon": "./images/favicon.ico"
+    "logo": "./images/logo.png"
   }
 }
