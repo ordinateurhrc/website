@@ -11,8 +11,17 @@ import { normalize, join, dirname } from "path";
 import { fileURLToPath } from "url";
 
 // Internal dependencies
+import { logError, logInfo, logSuccess } from "./log";
 import { downloadContent } from "./downloadContent";
 import { copyContentToPublic } from "./copyContentToPublic";
+import {
+  CopyContentError,
+  DownloadError,
+  DropboxAuthError,
+  DropboxFolderPathError,
+  FileDownloadError,
+  FolderDownloadError
+} from "./errors";
 
 // Typescript interface representing the contents of the metadata JSON file
 export interface Content {
@@ -30,35 +39,65 @@ const contentExampleDir = normalize(join(currentDir, "..", "content.example"));
  * Get the metadata JSON file for the content, as a JS object
  * @returns {Promise<Content>} - The metadata JSON file as a JS object
  */
-export async function getContent(): Promise<Content> {
+export async function getContent(): Promise<Content | null> {
   const contentFilePath = normalize(join(contentDir, "content.json"));
   const contentExampleFilePath = normalize(
     join(contentExampleDir, "content.json")
   );
 
-  let isUsingExample = false;
-  if (process.env.NODE_ENV === "production") await downloadContent();
-  else isUsingExample = true;
-
-  try {
-    await access(contentFilePath);
-    isUsingExample = false;
-  } catch (error) {
-    console.error(`Error accessing ${contentFilePath}: ${error}`);
-    console.error(`Falling back to ${contentExampleFilePath}`);
+  let isUsingExample = true;
+  if (process.env.NODE_ENV === "production") {
+    try {
+      await downloadContent();
+      isUsingExample = false;
+    } catch (error) {
+      if (error instanceof DropboxAuthError)
+        logError(
+          "Could not authenticate with Dropbox. Make sure you have all the environment variables set correctly (refer to .env.example)."
+        );
+      else if (error instanceof DropboxFolderPathError)
+        logError("DROPBOX_FOLDER_PATH not set.");
+      else if (error instanceof DownloadError) {
+        if (error instanceof FileDownloadError)
+          logError(`Could not download file ${error.path}`);
+        else if (error instanceof FolderDownloadError)
+          logError(`Could not download folder ${error.path}`);
+      } else logError("An unexpected error occured");
+    }
   }
 
-  await copyContentToPublic(isUsingExample);
+  if (!isUsingExample) {
+    try {
+      await access(contentFilePath);
+    } catch (error) {
+      isUsingExample = true;
+      logError(`Could not access ${contentFilePath}`);
+      logInfo(`Falling back to ${contentExampleFilePath}`);
+    }
+  }
+
+  try {
+    await copyContentToPublic(isUsingExample);
+  } catch (error) {
+    logError(
+      `Could not copy content to the /public folder. Received an error while copying ${(error as CopyContentError).srcPath} to ${(error as CopyContentError).destPath}.`
+    );
+    return null;
+  }
 
   try {
     const content = await readFile(
       isUsingExample ? contentExampleFilePath : contentFilePath,
       { encoding: "utf-8" }
     );
+    logSuccess(
+      `Successfully copied content to /public and able to read it as JSON.`
+    );
     return JSON.parse(content) as Content;
   } catch (error) {
-    throw new Error(
-      "Could neither read /content/content.json nor /content.example/content.json"
+    logError(
+      `Could not read ${isUsingExample ? contentExampleFilePath : contentFilePath}.`
     );
+    return null;
   }
 }

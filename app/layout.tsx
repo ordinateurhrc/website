@@ -5,10 +5,22 @@ import { Roboto, Roboto_Mono } from "next/font/google";
 
 // Internal dependencies
 import { getContent } from "@/utils/getContent";
+import { logError } from "@/utils/log";
 import "./globals.css";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { metadata } = await getContent();
+  const content = await getContent();
+
+  if (!content) {
+    logError("Could not get metadata from content. Using default metadata.");
+    return {
+      title: "Ordinateur",
+      description:
+        "The Computer Science Society of Hansraj College, University of Delhi"
+    };
+  }
+
+  const { metadata } = content;
 
   return {
     title: `${metadata.name} | ${metadata.description}`,

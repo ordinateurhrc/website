@@ -1,6 +1,7 @@
 import { copyFile, mkdir, readdir, stat as fileStat } from "fs/promises";
 import { join, normalize, dirname } from "path";
 import { fileURLToPath } from "url";
+import { CopyContentError } from "./errors";
 
 const currentDir = dirname(fileURLToPath(import.meta.url)); // Get the directory of this file on disk
 const contentDir = normalize(join(currentDir, "..", "content"));
@@ -13,11 +14,8 @@ const publicContentDir = normalize(join(currentDir, "..", "public", "content"));
  * @param isUsingExample - If true, copy the content into /public/content from the /content.example directory
  */
 export async function copyContentToPublic(isUsingExample = false) {
-  if (process.env.NODE_ENV !== "production") isUsingExample = true;
   if (!isUsingExample) await copyFileOrDirectory(contentDir, publicContentDir);
   else await copyFileOrDirectory(contentExampleDir, publicContentDir);
-
-  console.log(`Copied content to ${publicContentDir}`);
 }
 
 async function copyFileOrDirectory(source: string, destination: string) {
@@ -37,7 +35,7 @@ async function copyFileOrDirectory(source: string, destination: string) {
     } else {
       await copyFile(source, destination);
     }
-  } catch (error) {
-    console.error(`Error copying ${source} to ${destination}: ${error}`);
+  } catch (_error) {
+    throw new CopyContentError(source, destination);
   }
 }

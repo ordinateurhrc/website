@@ -5,6 +5,14 @@ import { mkdir, writeFile } from "fs/promises";
 import { join, normalize, dirname, basename } from "path";
 import { fileURLToPath } from "url";
 
+// Internal dependencies
+import {
+  DropboxAuthError,
+  DropboxFolderPathError,
+  FileDownloadError,
+  FolderDownloadError
+} from "./errors";
+
 async function downloadFile(filePath: string, localPath: string, dbx: Dropbox) {
   try {
     const filename = basename(filePath);
@@ -16,10 +24,8 @@ async function downloadFile(filePath: string, localPath: string, dbx: Dropbox) {
 
     const localFilePath = join(localPath, filename);
     await writeFile(localFilePath, fileBuffer);
-
-    console.log(`Downloaded file: ${localFilePath}`);
-  } catch (error) {
-    console.error(`Error downloading file: ${filePath}`, error);
+  } catch (_error) {
+    throw new FileDownloadError(filePath);
   }
 }
 
@@ -44,7 +50,8 @@ async function downloadFolder(
       }
     }
   } catch (error) {
-    console.error(`Error downloading folder: ${folderPath}`, error);
+    if (error instanceof FileDownloadError) throw error;
+    throw new FolderDownloadError(folderPath);
   }
 }
 
@@ -52,9 +59,6 @@ async function downloadFolder(
  * Read DROPBOX_FOLDER_PATH environment variable and download that folder recursively to populate /content
  */
 export async function downloadContent() {
-  // Do not download anything if not in production
-  if (process.env.NODE_ENV !== "production") return;
-
   configDotenv();
 
   const DROPBOX_FOLDER_PATH = process.env.DROPBOX_FOLDER_PATH;
@@ -72,10 +76,16 @@ export async function downloadContent() {
     fetch
   });
 
+  try {
+    await dbx.usersGetCurrentAccount(); // get user info just to test the authentication
+  } catch (_error) {
+    throw new DropboxAuthError();
+  }
+
   if (typeof DROPBOX_FOLDER_PATH !== "undefined") {
     await mkdir(LOCAL_PATH, { recursive: true });
     await downloadFolder(DROPBOX_FOLDER_PATH, LOCAL_PATH, dbx);
   } else {
-    throw new Error("DROPBOX_FOLDER_PATH environment variable is not set.");
+    throw new DropboxFolderPathError();
   }
 }
