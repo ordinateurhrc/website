@@ -14,7 +14,7 @@
     "com": "cz"
   },
   "dependencies": {
-    "chalk": "^5.3.0",
+    "chalk": "^4",
     "dotenv": "^16.4.5",
     "dropbox": "^10.34.0",
     "framer-motion": "^11.3.8",
