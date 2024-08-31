@@ -26,7 +26,6 @@ html {
 
 body {
   @apply font-sans;
-  @apply text-base;
   background-color: #212121;
   overflow-x: hidden;
 }
