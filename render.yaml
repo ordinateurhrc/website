@@ -1,0 +1,9 @@
+version: 1
+services:
+  - name: ordinateur
+    type: web
+    runtime: static
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    staticPublishPath: out
+    autoDeploy: false
