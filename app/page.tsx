@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 
 // Internal dependencies
 import type { SectionRoute } from "@/app/types";
-import Header from "@/app/components/Header";
 import { getContent } from "@/utils/getContent";
 import Sections from "@/app/components/Sections";
 import IntroSection from "@/app/sections/IntroSection";
@@ -18,8 +17,6 @@ const sectionRoutes = [
   { name: "Mag", href: "#magazine", component: MagSection }
 ] as SectionRoute[];
 
-const navLinks = sectionRoutes.map(({ name, href }) => ({ name, href }));
-
 export default async function Home(): Promise<ReactNode> {
   const content = await getContent();
 
@@ -29,7 +26,6 @@ export default async function Home(): Promise<ReactNode> {
 
   return (
     <>
-      <Header navLinks={navLinks} />
       <Sections sectionRoutes={sectionRoutes} content={content} />
     </>
   );
