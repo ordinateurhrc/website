@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 // Internal dependencies
-import NavContext from "@/app/NavContext";
+import NavContext from "@/app/contexts/NavContext";
 
 const transition = {
   duration: 0.5,
