@@ -13,6 +13,7 @@ import { fileURLToPath } from "url";
 // Internal dependencies
 import { logError, logInfo, logSuccess } from "./log";
 import { downloadContent } from "./downloadContent";
+import { type Content } from "@/app/types";
 import { copyContentToPublic } from "./copyContentToPublic";
 import {
   CopyContentError,
@@ -22,14 +23,6 @@ import {
   FileDownloadError,
   FolderDownloadError
 } from "./errors";
-
-// Typescript interface representing the contents of the metadata JSON file
-export interface Content {
-  metadata: {
-    name: string;
-    description: string;
-  };
-}
 
 const currentDir = dirname(fileURLToPath(import.meta.url)); // Get the directory of this file on disk
 const contentDir = normalize(join(currentDir, "..", "content"));
