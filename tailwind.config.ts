@@ -18,7 +18,13 @@ const config: Config = {
         cyan: "#39c0f3",
         blue: "#000080",
         yellow: "#fde047",
-        green: "#4ade80"
+        green: "#4ade80",
+        gpt: {
+          light: "#c3c3c3",
+          medium: "#444654",
+          dark: "#40414f",
+          darker: "#343541"
+        }
       },
       spacing: {
         view: "1080px"
