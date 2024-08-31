@@ -55,7 +55,11 @@ export async function getContent(): Promise<Content | null> {
           logError(`Could not download file ${error.path}`);
         else if (error instanceof FolderDownloadError)
           logError(`Could not download folder ${error.path}`);
-      } else logError("An unexpected error occured");
+      } else
+        logError(
+          "An unexpected error occured while downloading content from Dropbox."
+        );
+      logInfo(`Falling back to ${contentExampleFilePath}`);
     }
   }
 
@@ -83,10 +87,11 @@ export async function getContent(): Promise<Content | null> {
       isUsingExample ? contentExampleFilePath : contentFilePath,
       { encoding: "utf-8" }
     );
+    const JSONContent = JSON.parse(content) as Content;
     logSuccess(
-      `Successfully copied content to /public and able to read it as JSON.`
+      `Copied ${isUsingExample ? "example " : ""}content to /public and read ${isUsingExample ? "example " : ""}content.json.`
     );
-    return JSON.parse(content) as Content;
+    return JSONContent;
   } catch (error) {
     logError(
       `Could not read ${isUsingExample ? contentExampleFilePath : contentFilePath}.`
