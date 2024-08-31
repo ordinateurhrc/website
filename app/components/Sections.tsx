@@ -6,6 +6,7 @@ import { useState } from "react";
 // Internal dependencies
 import type { Content, SectionRoute } from "@/app/types";
 import NavContext from "@/app/contexts/NavContext";
+import Header from "@/app/components/Header";
 
 interface SectionsProps {
   sectionRoutes: SectionRoute[];
@@ -18,6 +19,8 @@ export default function Sections({
 }: SectionsProps): ReactNode {
   const [currentSection, setCurrentSection] = useState("#home");
 
+  const navLinks = sectionRoutes.map(({ name, href }) => ({ name, href }));
+
   return (
     <NavContext.Provider
       value={{
@@ -26,6 +29,7 @@ export default function Sections({
           setCurrentSection(newSection)
       }}
     >
+      <Header navLinks={navLinks} />
       {sectionRoutes.map(({ href, component: Section }) => (
         <Section
           key={Section.name}
