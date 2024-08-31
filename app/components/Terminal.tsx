@@ -32,8 +32,8 @@ export default function Terminal(): ReactNode {
         </div>
         <div className="mt-8 flex flex-col gap-4">
           <div className="flex items-center gap-4">
-            <div className="clip-chevron inline-block h-6 w-36 bg-green">
-              <div className="clip-inherit h-full w-[95%] bg-cyan text-center text-black-dark">
+            <div className="clip-chevron inline-block h-7 w-36 bg-green">
+              <div className="clip-inherit flex h-full w-[95%] items-center justify-center bg-cyan text-center text-black-dark">
                 {TERMINAL_PROMPT}
               </div>
             </div>
