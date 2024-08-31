@@ -32,7 +32,7 @@ const config: Config = {
       height: {
         "min-screen": "100svh",
         "max-screen": "100lvh",
-        screen: "100dvh"
+        screen: "100svh"
       }
     },
     screens: {
