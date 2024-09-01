@@ -6,11 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "type-check": "tsc --noEmit",
-    "prettify": "prettier --write '**/*.{js,ts,jsx,tsx,css,scss,html}'",
-    "prettier-check": "prettier --check '**/*.{js,ts,jsx,tsx,css,scss,html}'",
-    "prepare": "husky",
+    "lint:next": "next lint",
     "com": "cz"
   },
   "dependencies": {
