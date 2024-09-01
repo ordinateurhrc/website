@@ -10,6 +10,8 @@
     "com": "cz"
   },
   "dependencies": {
+    "@react95/core": "^8.0.3",
+    "@react95/icons": "^2.1.1",
     "chalk": "^4",
     "dotenv": "^16.4.5",
     "dropbox": "^10.34.0",
