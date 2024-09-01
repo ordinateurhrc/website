@@ -14,7 +14,7 @@ export default function MagSection({ containerID }: SectionProps): ReactNode {
     <div
       ref={sectionRef}
       id={containerID}
-      className="content mx-auto flex h-screen w-full max-w-view items-center justify-center bg-black-dark p-4 text-white"
+      className="mx-auto flex h-screen w-full max-w-view items-center justify-center bg-black-dark p-4 text-white"
     >
       This is supposed to be the Magazine section.
     </div>

@@ -15,7 +15,7 @@ export default function IntroSection({ containerID }: SectionProps): ReactNode {
     <div
       ref={sectionRef}
       id={containerID}
-      className="content mx-auto flex h-screen w-full max-w-view items-center justify-center bg-gradient-to-b from-black-light to-gpt-medium p-4 text-white"
+      className="mx-auto flex h-screen w-full max-w-view items-center justify-center bg-gradient-to-b from-black-light to-gpt-medium p-4 text-white"
     >
       <Terminal />
     </div>
