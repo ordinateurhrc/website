@@ -1,19 +1,24 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { ReactNode, useRef } from "react";
 import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
 import { TypeAnimation } from "react-type-animation";
 
 // Internal dependencies
 import { type SectionProps } from "@/app/types";
+import useUpdateSelectionInView from "@/utils/useUpdateSelectionInView";
 
 export default function AboutSection({
   containerID,
   content
 }: SectionProps): ReactNode {
+  const sectionRef = useRef(null);
+  useUpdateSelectionInView(sectionRef, "About");
+
   return (
     <div
+      ref={sectionRef}
       id={containerID}
       className="relative z-0 mx-auto h-screen w-full max-w-view bg-gpt-darker text-white"
     >
