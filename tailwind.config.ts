@@ -24,6 +24,11 @@ const config: Config = {
           medium: "#444654",
           dark: "#40414f",
           darker: "#343541"
+        },
+        retro: {
+          light: "#d9d9d9",
+          medium: "#c3c3c3",
+          blue: "#000080"
         }
       },
       spacing: {
