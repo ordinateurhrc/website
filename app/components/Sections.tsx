@@ -2,6 +2,7 @@
 
 import { type ReactNode } from "react";
 import { useState } from "react";
+import "@react95/core/themes/win95.css";
 
 // Internal dependencies
 import type { Content, SectionRoute } from "@/app/types";

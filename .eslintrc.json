@@ -2,7 +2,7 @@
   "extends": ["next/core-web-vitals", "plugin:compat/recommended"],
   "plugins": ["compat"],
   "rules": {
-    "no-unused-vars": "error"
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
   },
   "env": {
     "browser": true
