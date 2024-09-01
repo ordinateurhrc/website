@@ -25,3 +25,23 @@ export interface SectionRoute {
   href: string;
   component: FC<SectionProps>;
 }
+
+/* Header types */
+export interface NavLink {
+  name: string;
+  href: string;
+}
+
+export interface MenuButtonProps {
+  isNavBarOpen: boolean;
+  onClick: () => void;
+  className?: string;
+}
+
+export interface NavBarProps {
+  links: NavLink[];
+  currentLink: string;
+  isOpen: boolean;
+  closeMenu: () => void;
+  updateCurrentLink: (_link: string) => void;
+}
