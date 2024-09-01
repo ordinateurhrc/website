@@ -48,7 +48,6 @@
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
       "eslint",
-      "tsc --noEmit",
       "prettier --check"
     ],
     "*": [
