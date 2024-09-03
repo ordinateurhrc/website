@@ -14,3 +14,4 @@ export const ASCII_STRING = String.raw`
 
 export const GLITCH_SCREEN_TEXT =
   "Your potato PC is too slow to handle this page.";
+export const GLITCH_SCREEN_DURATION = 1000;
