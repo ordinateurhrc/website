@@ -8,6 +8,9 @@ import { type SectionProps } from "@/app/types";
 import useUpdateSelectionInView from "@/utils/useUpdateSelectionInView";
 import GlitchScreen from "@/app/components/GlitchScreen";
 
+// Constants dependencies
+import { GLITCH_SCREEN_DURATION } from "@/app/constants";
+
 export default function TeamSection({ containerID }: SectionProps): ReactNode {
   const [showGlitch, setShowGlitch] = useState(false);
   const shownGlitch = useRef(false);
@@ -19,8 +22,13 @@ export default function TeamSection({ containerID }: SectionProps): ReactNode {
   useEffect(() => {
     if (!showGlitch && inView && !shownGlitch.current) {
       setShowGlitch(true);
-      document.getElementById("team")?.scrollIntoView();
-      setTimeout(() => setShowGlitch(false), 5000);
+      setTimeout(() => {
+        setShowGlitch(false);
+        if (sectionRef.current)
+          (sectionRef.current as HTMLElement).scrollIntoView({
+            behavior: "instant"
+          });
+      }, GLITCH_SCREEN_DURATION);
       shownGlitch.current = true;
     }
   }, [inView, showGlitch]);

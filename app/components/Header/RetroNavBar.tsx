@@ -1,73 +1,50 @@
 import { ReactNode } from "react";
 import { List } from "@react95/core";
-import {
-  FolderExe,
-  FolderExe2,
-  FolderFile,
-  Settings,
-  FolderSettings,
-  FolderPrint,
-  FileFind,
-  HelpBook,
-  LoaderBat,
-  Computer3,
-  MicrosoftExchange,
-  MsDos,
-  MicrosoftNetwork,
-  WindowsExplorer
-} from "@react95/icons";
+import { FolderExe2, HelpBook, LoaderBat, FileFind } from "@react95/icons";
 import { twMerge } from "tailwind-merge";
+import Link from "next/link";
 
 // Internal dependencies
 import { type NavBarProps } from "@/app/types";
 
-export default function RetroNavBar(_props: NavBarProps): ReactNode {
+export default function RetroNavBar({
+  links,
+  currentLink,
+  isOpen,
+  closeMenu,
+  updateCurrentLink
+}: NavBarProps): ReactNode {
+  const icons = [
+    <FileFind key="msdos" variant="32x32_4" />,
+    <FolderExe2 key="folderexe" variant="32x32_4" />,
+    <LoaderBat key="loaderbat" variant="32x32_4" />,
+    <HelpBook key="helpbook" variant="32x32_4" />
+  ];
+
   return (
     <List
       className={twMerge(
         "desktop:hidden", // Only display on mobile devices
-        "absolute right-0 top-full z-[10000] w-full p-8 opacity-100 backdrop-blur-md"
+        "pointer-events-none absolute right-0 top-full z-[10000] w-full p-8 opacity-0 backdrop-blur-md",
+        isOpen && "pointer-events-auto opacity-100"
       )}
       width={"200px"}
     >
-      <List.Item icon={<FolderExe2 variant="32x32_4" />}>
-        <List width={"200px"}>
-          <List.Item icon={<FolderExe variant="16x16_4" />}>
-            Accessories
-          </List.Item>
-          <List.Item icon={<FolderExe variant="16x16_4" />}>StartUp</List.Item>
-          <List.Item icon={<MicrosoftExchange variant="16x16_4" />}>
-            Microsoft Exchange
-          </List.Item>
-          <List.Item icon={<MsDos variant="16x16_32" />}>
-            MS-DOS Prompt
-          </List.Item>
-          <List.Item icon={<MicrosoftNetwork variant="16x16_4" />}>
-            The Microsoft Network
-          </List.Item>
-          <List.Item icon={<WindowsExplorer variant="16x16_4" />}>
-            Windows Explorer
-          </List.Item>
-        </List>
-        Programs
-      </List.Item>
-      <List.Item icon={<FolderFile variant="32x32_4" />}>Documents</List.Item>
-      <List.Item icon={<Settings variant="32x32_4" />}>
-        <List width={"200px"}>
-          <List.Item icon={<FolderSettings variant="16x16_4" />}>
-            Control Panel
-          </List.Item>
-          <List.Item icon={<FolderPrint variant="16x16_4" />}>
-            Printers
-          </List.Item>
-        </List>
-        Settings
-      </List.Item>
-      <List.Item icon={<FileFind variant="32x32_4" />}>Find</List.Item>
-      <List.Item icon={<HelpBook variant="32x32_4" />}>Help</List.Item>
-      <List.Item icon={<LoaderBat variant="32x32_4" />}>Run...</List.Item>
-      <List.Divider />
-      <List.Item icon={<Computer3 variant="32x32_4" />}>Shut Down...</List.Item>
+      {links.map(({ name, href }, index) => (
+        <List.Item
+          key={index}
+          icon={icons[index % icons.length]}
+          onClick={() => {
+            updateCurrentLink(name);
+            closeMenu();
+          }}
+          className={twMerge(
+            name == currentLink && "bg-retro-blue !text-white"
+          )}
+        >
+          <Link href={href}>{name}</Link>
+        </List.Item>
+      ))}
     </List>
   );
 }
