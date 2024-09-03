@@ -22,9 +22,12 @@ export default function TeamSection({ containerID }: SectionProps): ReactNode {
   useEffect(() => {
     if (!showGlitch && inView && !shownGlitch.current) {
       setShowGlitch(true);
-      document.getElementById("team")?.scrollIntoView();
       setTimeout(() => {
         setShowGlitch(false);
+        if (sectionRef.current)
+          (sectionRef.current as HTMLElement).scrollIntoView({
+            behavior: "instant"
+          });
       }, GLITCH_SCREEN_DURATION);
       shownGlitch.current = true;
     }
