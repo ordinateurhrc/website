@@ -7,6 +7,28 @@
     "about": {
       "prompt": "So, what do you guys do exactly?",
       "answer": "The Computer Science Society of Hansraj College is not your ordinary organization. We are an intergalactic empire dedicated to saving the world from the dominion of cats and vampires. Our mission is to harness the power of technology and programming to combat these formidable foes and restore balance to the universe. "
-    }
+    },
+    "team": [
+      {
+        "name": "John Doe",
+        "role": "President",
+        "image": "team/president.jpeg",
+        "description": "A dedicated coder and leader, John is the mastermind behind our operations. He is a visionary who dreams of a world where every student can code and every cat can dance.",
+        "points": [
+          "Likes to do DSA",
+          "Engages in unauthorized arms trade in the Middle East"
+        ]
+      },
+      {
+        "name": "Jane Doe",
+        "role": "Vice President",
+        "image": "team/vp.jpeg",
+        "description": "Jane is the heart and soul of our society. She is a passionate advocate for human-cat relations and has dedicated her life to promoting peace and understanding between the two species.",
+        "points": [
+          "Firm believer of the Flat Earth doctrine",
+          "Has a pet cat named 'Vampire'"
+        ]
+      }
+    ]
   }
 }
