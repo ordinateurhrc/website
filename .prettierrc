@@ -7,5 +7,6 @@
   "trailingComma": "none",
   "bracketSpacing": true,
   "arrowParens": "avoid",
+  "tailwindAttributes": ["innerClassName", "outerClassName"],
   "plugins": ["prettier-plugin-tailwindcss"]
 }
