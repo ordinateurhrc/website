@@ -11,6 +11,15 @@ export interface Content {
       prompt: string;
       answer: string;
     };
+    team: [
+      {
+        name: string;
+        role: string;
+        image: string;
+        description: string;
+        points: string[];
+      }
+    ];
   };
 }
 
