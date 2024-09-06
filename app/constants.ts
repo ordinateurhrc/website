@@ -12,6 +12,7 @@ export const ASCII_STRING = String.raw`
 ╚██████╔╝██║  ██║██████╔╝██║██║ ╚████║██║  ██║   ██║   ███████╗╚██████╔╝██║  ██║
  ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝ ╚═╝  ╚═╝`;
 
+export const GLITCH_SCREEN_TITLE = "A fatal error has occurred.";
 export const GLITCH_SCREEN_TEXT =
-  "Your potato PC is too slow to handle this page.";
-export const GLITCH_SCREEN_DURATION = 1000;
+  "It seems that your device could not handle the copius amount of AI. Reverting to a simpler interface.";
+export const GLITCH_SCREEN_DURATION = 10000;
