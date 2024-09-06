@@ -22,19 +22,27 @@ export default function TeamSection({
   const sectionRef = useRef(null);
   useUpdateSelectionInView(sectionRef, "Team");
 
+  const timeout = useRef<number | null>(null);
+
   const handleGlitchClose = () => {
     setShowGlitch(false);
     if (sectionRef.current)
       (sectionRef.current as HTMLElement).scrollIntoView({
         behavior: "instant"
       });
+
+    if (timeout.current) clearTimeout(timeout.current);
   };
 
   const inView = useInView(sectionRef, { amount: 0.25 });
   useEffect(() => {
     if (!showGlitch && inView && !shownGlitch.current) {
       setShowGlitch(true);
-      setTimeout(() => handleGlitchClose(), GLITCH_SCREEN_DURATION);
+      // In a browser environment, setTimeout returns a number
+      timeout.current = window.setTimeout(
+        () => handleGlitchClose(),
+        GLITCH_SCREEN_DURATION
+      );
       shownGlitch.current = true;
     }
   }, [inView, showGlitch]);
