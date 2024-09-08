@@ -25,6 +25,14 @@ export interface Content {
       currentVolume: string;
       pastVolumes: [string];
     };
+    events: [
+      {
+        name: string;
+        date: string;
+        description: string;
+        images: [string];
+      }
+    ];
   };
   contact: {
     facebook: string;
