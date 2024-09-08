@@ -20,6 +20,11 @@ export interface Content {
         points: string[];
       }
     ];
+    magazine: {
+      tagline: string;
+      currentVolume: string;
+      pastVolumes: [string];
+    };
   };
 }
 
