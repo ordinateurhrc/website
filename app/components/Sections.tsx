@@ -8,6 +8,7 @@ import "@react95/core/themes/win95.css";
 import type { Content, SectionRoute } from "@/app/types";
 import NavContext from "@/app/contexts/NavContext";
 import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
 
 interface SectionsProps {
   sectionRoutes: SectionRoute[];
@@ -38,6 +39,7 @@ export default function Sections({
           content={content}
         />
       ))}
+      <Footer content={content} />
     </NavContext.Provider>
   );
 }

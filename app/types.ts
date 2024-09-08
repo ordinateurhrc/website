@@ -26,6 +26,12 @@ export interface Content {
       pastVolumes: [string];
     };
   };
+  contact: {
+    facebook: string;
+    instagram: string;
+    linkedin: string;
+    mail: string;
+  };
 }
 
 /* Section types */
