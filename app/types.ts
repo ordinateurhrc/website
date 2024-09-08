@@ -20,6 +20,25 @@ export interface Content {
         points: string[];
       }
     ];
+    magazine: {
+      tagline: string;
+      currentVolume: string;
+      pastVolumes: [string];
+    };
+    events: [
+      {
+        name: string;
+        date: string;
+        description: string;
+        images: [string];
+      }
+    ];
+  };
+  contact: {
+    facebook: string;
+    instagram: string;
+    linkedin: string;
+    mail: string;
   };
 }
 

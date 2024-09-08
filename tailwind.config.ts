@@ -48,8 +48,10 @@ const config: Config = {
       mono: ["var(--font-roboto-mono)"]
     },
     fontSize: {
+      sm: "0.875rem",
       base: "1.25rem",
       md: "1.75rem",
+      heading: "2rem",
       lg: "4rem",
       xl: "6rem"
     },

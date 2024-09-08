@@ -29,6 +29,36 @@
           "Has a pet cat named 'Vampire'"
         ]
       }
+    ],
+    "magazine": {
+      "tagline": "Every year since 2017, our society releases its annual publication: Bitwise. For everything technology and computer science!",
+      "currentVolume": "https://drive.google.com/",
+      "pastVolumes": [
+        "https://drive.google.com/",
+        "https://drive.google.com/",
+        "https://drive.google.com/",
+        "https://drive.google.com/"
+      ]
+    },
+    "events": [
+      {
+        "name": "Code Wars",
+        "date": "2021-10-10",
+        "description": "Code Wars is our annual coding competition where students from all over the galaxy come together to test their skills and compete for glory and prizes. The competition consists of a series of coding challenges that test your knowledge of algorithms, data structures, and problem-solving skills. Whether you're a beginner or an expert, Code Wars has something for everyone. So grab your lightsaber and join us for an epic battle of wits and code!",
+        "images": ["events/codewars1.jpeg", "events/codewars.jpeg"]
+      },
+      {
+        "name": "Hackathon",
+        "date": "2021-11-11",
+        "description": "Our annual hackathon is a 24-hour coding marathon where students work in teams to build innovative projects and solve real-world problems. Whether you're a seasoned hacker or a first-time coder, our hackathon has something for everyone. So grab your laptop and join us for an unforgettable experience of coding, collaboration, and creativity!",
+        "images": ["events/hackathon1.jpeg", "events/hackathon2.jpeg"]
+      }
     ]
+  },
+  "contact": {
+    "facebook": "https://www.facebook.com/computerscience",
+    "instagram": "https://www.instagram.com/computerscience",
+    "linkedin": "https://www.linkedin.com/computerscience",
+    "mail": "team@ordinateur.in"
   }
 }
