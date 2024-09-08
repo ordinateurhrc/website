@@ -47,10 +47,9 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
-      "eslint",
-      "prettier --check"
+      "eslint"
     ],
-    "*": [
+    "*.{js,jsx,ts,tsx,css,md,mjs,cjs,json,sass,scss}": [
       "prettier --check"
     ]
   },
