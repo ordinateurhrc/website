@@ -25,8 +25,8 @@ export default async function Home(): Promise<ReactNode> {
   }
 
   return (
-    <>
+    <div className="size-full bg-black-medium">
       <Sections sectionRoutes={sectionRoutes} content={content} />
-    </>
+    </div>
   );
 }
