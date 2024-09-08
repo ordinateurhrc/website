@@ -7,8 +7,8 @@ import { getContent } from "@/utils/getContent";
 import Sections from "@/app/components/Sections";
 import IntroSection from "@/app/sections/IntroSection";
 import AboutSection from "@/app/sections/AboutSection";
-import TeamSection from "./sections/TeamSection";
-import MagSection from "./sections/MagSection";
+import TeamSection from "@/app/sections/TeamSection";
+import MagSection from "@/app/sections/MagSection";
 
 const sectionRoutes = [
   { name: "Home", href: "#home", component: IntroSection },
